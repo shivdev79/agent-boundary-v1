@@ -30,13 +30,20 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from unittest.mock import MagicMock
+import types
 
 # Mock mergekit before TRL is imported — TRL references it in callbacks
 # but we never use model-merging features, so this is safe.
+# Must use types.ModuleType (not MagicMock) because TRL calls
+# importlib.util.find_spec("mergekit") which requires __spec__ to be set.
+def _make_mock_module(name: str) -> types.ModuleType:
+    mod = types.ModuleType(name)
+    mod.__spec__ = None
+    return mod
+
 for _mod in ["mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
              "mergekit.io", "mergekit.io.tasks", "mergekit.common"]:
-    sys.modules.setdefault(_mod, MagicMock())
+    sys.modules.setdefault(_mod, _make_mock_module(_mod))
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
