@@ -5,9 +5,10 @@ This script trains a real LLM to make calibrated workflow judgments
 
 --- Setup (run once on Colab / GPU machine) ---
 
-    pip install unsloth mergekit openenv-core -q
+    pip install unsloth openenv-core -q
     pip install "trl>=0.19.0,<=0.24.0" -q
-    # Then restart runtime before running this script
+    # NO mergekit needed — the script mocks it automatically
+    # Restart runtime after install, then run this script
 
 --- Run ---
 
@@ -29,6 +30,13 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from unittest.mock import MagicMock
+
+# Mock mergekit before TRL is imported — TRL references it in callbacks
+# but we never use model-merging features, so this is safe.
+for _mod in ["mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
+             "mergekit.io", "mergekit.io.tasks", "mergekit.common"]:
+    sys.modules.setdefault(_mod, MagicMock())
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
