@@ -45,9 +45,10 @@ class _MockObj:
 def _make_mock_module(name: str) -> types.ModuleType:
     mod = types.ModuleType(name)
     mod.__spec__ = importlib.machinery.ModuleSpec(name, loader=None)
-    mod.__file__ = f"/mock/{name}.py"   # must be a string — inspect.getmodule iterates sys.modules and calls .endswith() on __file__
+    mod.__file__ = f"/mock/{name}.py"
     mod.__path__ = []
     mod.__package__ = name.split(".")[0]
+    mod.__version__ = "0.0.0"   # TRL calls version.parse(__version__) — must be a string
     mod.__getattr__ = lambda attr: _MockObj
     return mod
 
