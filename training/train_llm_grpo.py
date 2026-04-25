@@ -45,7 +45,10 @@ class _MockObj:
 def _make_mock_module(name: str) -> types.ModuleType:
     mod = types.ModuleType(name)
     mod.__spec__ = importlib.machinery.ModuleSpec(name, loader=None)
-    mod.__getattr__ = lambda attr: _MockObj  # satisfy any `from mergekit.x import Y`
+    mod.__file__ = f"/mock/{name}.py"   # must be a string — inspect.getmodule iterates sys.modules and calls .endswith() on __file__
+    mod.__path__ = []
+    mod.__package__ = name.split(".")[0]
+    mod.__getattr__ = lambda attr: _MockObj
     return mod
 
 for _mod in ["mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
