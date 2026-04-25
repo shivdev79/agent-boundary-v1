@@ -84,14 +84,16 @@ class AgentBoundaryEnvironment(Environment):
         self._state.cumulative_score = round(self._state.cumulative_score + grade.score, 3)
         self._state.cumulative_reward = round(self._state.cumulative_reward + grade.reward, 3)
 
-        if action.decision.value == "ASK" and stage.next_stage_on_ask is not None:
+        at_turn_limit = self._state.step_count >= self._task.max_turns
+
+        if action.decision.value == "ASK" and stage.next_stage_on_ask is not None and not self._state.used_ask:
             self._state.stage_index = stage.next_stage_on_ask
             self._state.current_request_id = self._task.stages[self._state.stage_index].request_id
             self._state.used_ask = True
             return self._build_observation(
                 response_to_question=stage.response_to_question,
                 outcome=grade.outcome,
-                done=False,
+                done=at_turn_limit,
                 reward=grade.reward,
                 rubric_breakdown=grade.rubric_breakdown,
                 action=action,
@@ -100,7 +102,7 @@ class AgentBoundaryEnvironment(Environment):
         self._mark_request_completed(stage.request_id)
 
         next_index = self._next_stage_index_after_resolution(stage)
-        if next_index is not None:
+        if next_index is not None and not at_turn_limit:
             self._state.stage_index = next_index
             self._state.current_request_id = self._task.stages[self._state.stage_index].request_id
             next_stage = self._current_stage

@@ -29,6 +29,8 @@ tags:
 
 **GitHub:** https://github.com/shivdev79/agent-boundary-v1
 
+**Colab Notebook:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shivdev79/agent-boundary-v1/blob/main/AgentBoundary_v1_Training.ipynb)
+
 ---
 
 ## The Problem
@@ -87,7 +89,7 @@ AgentBoundaryAction(
 
 ## Reward Design
 
-The reward is **dense, compositional, and deliberately hard to game**. Seven independent components run on every step:
+The reward is **dense, compositional, and deliberately hard to game**. Eight independent components run on every step:
 
 | Component | Weight | What it measures |
 |-----------|--------|-----------------|
@@ -97,6 +99,7 @@ The reward is **dense, compositional, and deliberately hard to game**. Seven ind
 | `escalation_quality` | 0.10 | Routing to the right escalation target |
 | `evidence_use` | 0.10 | Selecting the correct available tool |
 | `documentation` | 0.08 | Audit note quality and keyword coverage |
+| `efficiency` | 0.05 | Penalizes unnecessary steps and over-escalation |
 | `exploit_resistance` | 0.07 | Penalizes reward hacking and generic shortcuts |
 
 **Final reward formula:**
@@ -155,14 +158,14 @@ python training/train_llm_grpo.py --dry-run    # validate reward without GPU
 
 | Policy | avg_reward | avg_score | Description |
 |--------|-----------|-----------|-------------|
-| random | 0.460 | 0.930 | Random decision each step |
-| weak | 0.586 | 0.993 | Always escalate to manager |
-| heuristic | 0.757 | 1.279 | Keyword-matching rules |
-| **trained (REINFORCE)** | **1.450** | **1.725** | Linear policy, 600 episodes |
-| **trained (LLM GRPO)** | **TBD** | **TBD** | Qwen2.5-0.5B + LoRA |
-| expert | 1.656 | 1.828 | Hand-authored oracle |
+| random | 0.444 | 0.922 | Random decision each step |
+| weak | 0.558 | 0.979 | Always escalate to manager |
+| heuristic | 0.732 | 1.266 | Keyword-matching rules |
+| **trained (REINFORCE)** | **1.320** | **1.560** | Linear policy, 600 episodes |
+| **trained (LLM GRPO)** | **run Cell 6 in Colab** | **run Cell 6 in Colab** | Qwen2.5-0.5B + LoRA, T4 GPU required |
+| expert | 1.652 | 1.826 | Hand-authored oracle |
 
-The REINFORCE policy **triples reward vs random** and **nearly doubles vs heuristic** — the environment is learnable but not trivially solved.
+The REINFORCE policy **beats heuristic by 1.8× and random by 3×** — the environment is learnable but not trivially solved.
 
 ### Training Curve
 
@@ -227,7 +230,7 @@ agentv1/
 ├── openenv.yaml                    # OpenEnv spec
 ├── server/
 │   ├── agentv1_environment.py      # Environment logic (reset/step)
-│   ├── grader.py                   # 7-component deterministic reward
+│   ├── grader.py                   # 8-component deterministic reward
 │   └── task_bank.py                # 5 tasks, 10 stages
 ├── training/
 │   ├── train_grpo.py               # REINFORCE linear policy

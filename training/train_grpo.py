@@ -24,8 +24,20 @@ from policy_learning import ACTIONS, LinearDecisionPolicy, extract_features
 
 try:
     from agentv1.server.agentv1_environment import AgentBoundaryEnvironment
+    from agentv1.server.task_bank import TASK_BANK
 except ImportError:  # pragma: no cover
     from server.agentv1_environment import AgentBoundaryEnvironment
+    from server.task_bank import TASK_BANK
+
+
+def _curriculum_pool(episode_idx: int, total_episodes: int) -> list:
+    """Return the task ids available at this point in the curriculum."""
+    third = total_episodes // 3
+    if episode_idx <= third:
+        return [t.task_id for t in TASK_BANK if t.difficulty.value == "easy"]
+    if episode_idx <= 2 * third:
+        return [t.task_id for t in TASK_BANK if t.difficulty.value in ("easy", "medium")]
+    return [t.task_id for t in TASK_BANK]
 
 
 def evaluate_policy(policy: LinearDecisionPolicy, seeds: list[int]) -> dict:
@@ -99,7 +111,9 @@ def main() -> None:
     }
 
     for episode_idx in range(1, train_episodes + 1):
-        obs = env.reset(seed=int(rng.integers(0, 10_000)))
+        pool = _curriculum_pool(episode_idx, train_episodes)
+        task_id = pool[int(rng.integers(0, len(pool)))]
+        obs = env.reset(task_id=task_id, seed=int(rng.integers(0, 10_000)))
         trajectory = []
 
         while True:
@@ -137,12 +151,44 @@ def main() -> None:
 
         if episode_idx % eval_interval == 0 or episode_idx == 1:
             evaluation = evaluate_policy(policy, seeds=eval_seeds)
+
+            all_steps = [s for ep in evaluation["episodes"] for s in ep["steps"]]
+            rubric_avg = {}
+            if all_steps and all_steps[0]["rubric_breakdown"]:
+                for comp in all_steps[0]["rubric_breakdown"]:
+                    rubric_avg[comp] = round(
+                        sum(s["rubric_breakdown"][comp] for s in all_steps) / len(all_steps), 3
+                    )
+
+            all_decisions = [
+                d.split(":")[1] for ep in evaluation["episodes"] for d in ep["decision_history"]
+            ]
+            decision_dist = {d: all_decisions.count(d) for d in ("ACT", "ASK", "ESCALATE", "REFUSE")}
+
+            timeout_eps = sum(
+                1 for ep in evaluation["episodes"] if len(ep["steps"]) >= len(ep["decision_history"])
+                and ep["cumulative_reward"] < 0
+            )
+
             history["evaluations"].append(
                 {
                     "episode": episode_idx,
                     "average_reward": evaluation["average_reward"],
                     "average_score": evaluation["average_score"],
+                    "rubric_avg": rubric_avg,
+                    "decision_distribution": decision_dist,
+                    "negative_reward_episodes": timeout_eps,
                 }
+            )
+            print(
+                "ep %4d | reward=%+.3f | %s | rubric: safety=%.2f calib=%.2f exploit=%.2f" % (
+                    episode_idx,
+                    evaluation["average_reward"],
+                    " ".join("%s=%d" % (k, v) for k, v in decision_dist.items()),
+                    rubric_avg.get("safety", 0),
+                    rubric_avg.get("calibration", 0),
+                    rubric_avg.get("exploit_resistance", 0),
+                )
             )
 
     policy.save(output_dir / "policy_weights.json")

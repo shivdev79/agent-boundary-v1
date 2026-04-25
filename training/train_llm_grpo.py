@@ -145,19 +145,25 @@ def _obs_payload(task, stage) -> dict:
 
 
 def build_dataset(repeat: int = DATASET_REPEAT) -> Dataset:
-    """Build a GRPO training dataset — one prompt per task stage, repeated."""
+    """Build a GRPO training dataset with curriculum weighting.
+
+    Easy tasks get 2x repeat so the model sees successful trajectories early
+    before harder tasks dilute the reward signal.
+    """
+    _DIFFICULTY_REPEAT = {"easy": repeat * 2, "medium": repeat, "hard": repeat, "long_horizon": repeat}
     records = []
     for task in TASK_BANK:
+        task_repeat = _DIFFICULTY_REPEAT.get(task.difficulty.value, repeat)
         for si, stage in enumerate(task.stages):
-            records.append({
+            record = {
                 "prompt": [
                     {"role": "system", "content": SYSTEM_PROMPT},
                     {"role": "user", "content": json.dumps(_obs_payload(task, stage), indent=2)},
                 ],
                 "task_id": task.task_id,
                 "stage_index": si,
-            })
-    records = records * repeat
+            }
+            records.extend([record] * task_repeat)
     return Dataset.from_list(records)
 
 
@@ -180,6 +186,9 @@ def _parse_action(text: str) -> AgentBoundaryAction:
     )
 
 
+_reward_call_count = 0
+
+
 def reward_fn(
     completions,
     task_id: list[str] | None = None,
@@ -187,7 +196,13 @@ def reward_fn(
     **kwargs,
 ) -> list[float]:
     """Grade each model completion against the deterministic environment grader."""
+    global _reward_call_count
+    _reward_call_count += 1
+
     rewards = []
+    rubric_rows = []
+    malformed = 0
+
     for i, completion in enumerate(completions):
         text = completion if isinstance(completion, str) else completion[0]["content"]
         tid = task_id[i] if task_id else None
@@ -197,11 +212,32 @@ def reward_fn(
             task = TASK_BY_ID.get(tid) if tid else None
             if task is None or sidx >= len(task.stages):
                 rewards.append(-1.0)
+                malformed += 1
                 continue
             grade = grade_action(task.stages[sidx], action)
             rewards.append(grade.reward)
+            rubric_rows.append(grade.rubric_breakdown)
         except Exception:
-            rewards.append(-1.0)    # malformed JSON or invalid enum value
+            rewards.append(-1.0)
+            malformed += 1
+
+    # Print monitoring snapshot every 50 reward calls so exploitation is visible
+    if _reward_call_count % 50 == 1:
+        sample_text = completions[0] if isinstance(completions[0], str) else completions[0][0]["content"]
+        rubric_summary = ""
+        if rubric_rows:
+            rubric_summary = "  rubric: " + "  ".join(
+                "%s=%.2f" % (k, sum(r[k] for r in rubric_rows) / len(rubric_rows))
+                for k in ("safety", "calibration", "exploit_resistance")
+            )
+        print("\n[monitor call=%d] rewards=%s  malformed=%d%s\nsample: %s\n" % (
+            _reward_call_count,
+            [round(r, 3) for r in rewards],
+            malformed,
+            rubric_summary,
+            sample_text[:400],
+        ))
+
     return rewards
 
 

@@ -6,142 +6,567 @@
     "entropy_bonus": 0.01
   },
   "baseline_reward_lines": {
-    "random": 0.46,
-    "weak": 0.586,
-    "heuristic": 0.757,
-    "expert": 1.656
+    "random": 0.444,
+    "weak": 0.558,
+    "heuristic": 0.732,
+    "expert": 1.652
   },
   "baseline_score_lines": {
-    "random": 0.93,
-    "weak": 0.993,
-    "heuristic": 1.279,
-    "expert": 1.828
+    "random": 0.922,
+    "weak": 0.979,
+    "heuristic": 1.266,
+    "expert": 1.826
   },
   "evaluations": [
     {
       "episode": 1,
-      "average_reward": 0.452,
-      "average_score": 1.226
+      "average_reward": 0.514,
+      "average_score": 0.957,
+      "rubric_avg": {
+        "safety": 0.683,
+        "calibration": 0.493,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.743,
+        "efficiency": 0.836,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 0,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 7
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 25,
-      "average_reward": 0.762,
-      "average_score": 1.181
+      "average_reward": 0.514,
+      "average_score": 0.957,
+      "rubric_avg": {
+        "safety": 0.683,
+        "calibration": 0.493,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.743,
+        "efficiency": 0.836,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 0,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 7
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 50,
-      "average_reward": 0.561,
-      "average_score": 1.28
+      "average_reward": 0.514,
+      "average_score": 0.957,
+      "rubric_avg": {
+        "safety": 0.683,
+        "calibration": 0.493,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.743,
+        "efficiency": 0.836,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 0,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 7
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 75,
-      "average_reward": 0.585,
-      "average_score": 1.292
+      "average_reward": 0.514,
+      "average_score": 0.957,
+      "rubric_avg": {
+        "safety": 0.683,
+        "calibration": 0.493,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.743,
+        "efficiency": 0.836,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 0,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 7
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 100,
-      "average_reward": 0.561,
-      "average_score": 1.28
+      "average_reward": 0.352,
+      "average_score": 0.876,
+      "rubric_avg": {
+        "safety": 0.59,
+        "calibration": 0.461,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.743,
+        "efficiency": 0.836,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 1,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 6
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 125,
-      "average_reward": 1.137,
-      "average_score": 1.469
+      "average_reward": 0.51,
+      "average_score": 0.955,
+      "rubric_avg": {
+        "safety": 0.669,
+        "calibration": 0.604,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.771,
+        "efficiency": 0.907,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 2,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 5
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 150,
-      "average_reward": 0.715,
-      "average_score": 1.057
+      "average_reward": 0.487,
+      "average_score": 0.944,
+      "rubric_avg": {
+        "safety": 0.654,
+        "calibration": 0.683,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.8,
+        "efficiency": 0.979,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 4,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 1
     },
     {
       "episode": 175,
-      "average_reward": 0.958,
-      "average_score": 1.379
+      "average_reward": 0.487,
+      "average_score": 0.944,
+      "rubric_avg": {
+        "safety": 0.654,
+        "calibration": 0.683,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.8,
+        "efficiency": 0.979,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 4,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 1
     },
     {
       "episode": 200,
-      "average_reward": 0.958,
-      "average_score": 1.379
+      "average_reward": 0.487,
+      "average_score": 0.944,
+      "rubric_avg": {
+        "safety": 0.654,
+        "calibration": 0.683,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.914,
+        "documentation": 0.8,
+        "efficiency": 0.979,
+        "exploit_resistance": 0.871
+      },
+      "decision_distribution": {
+        "ACT": 4,
+        "ASK": 0,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 1
     },
     {
       "episode": 225,
-      "average_reward": 1.135,
-      "average_score": 1.568
+      "average_reward": 0.714,
+      "average_score": 1.057,
+      "rubric_avg": {
+        "safety": 0.757,
+        "calibration": 0.786,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.521,
+        "evidence_use": 0.914,
+        "documentation": 0.829,
+        "efficiency": 0.979,
+        "exploit_resistance": 0.893
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 0,
+        "ESCALATE": 1,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 250,
-      "average_reward": 1.135,
-      "average_score": 1.568
+      "average_reward": 0.714,
+      "average_score": 1.057,
+      "rubric_avg": {
+        "safety": 0.757,
+        "calibration": 0.786,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.521,
+        "evidence_use": 0.914,
+        "documentation": 0.829,
+        "efficiency": 0.979,
+        "exploit_resistance": 0.893
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 0,
+        "ESCALATE": 1,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 275,
-      "average_reward": 1.137,
-      "average_score": 1.469
+      "average_reward": 0.732,
+      "average_score": 1.166,
+      "rubric_avg": {
+        "safety": 0.771,
+        "calibration": 0.75,
+        "information_gathering": 0.725,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.888,
+        "documentation": 0.8,
+        "efficiency": 0.919,
+        "exploit_resistance": 0.887
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 2,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 300,
-      "average_reward": 1.314,
-      "average_score": 1.657
+      "average_reward": 0.732,
+      "average_score": 1.166,
+      "rubric_avg": {
+        "safety": 0.771,
+        "calibration": 0.75,
+        "information_gathering": 0.725,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.888,
+        "documentation": 0.8,
+        "efficiency": 0.919,
+        "exploit_resistance": 0.887
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 2,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 325,
-      "average_reward": 1.135,
-      "average_score": 1.568
+      "average_reward": 0.732,
+      "average_score": 1.166,
+      "rubric_avg": {
+        "safety": 0.771,
+        "calibration": 0.75,
+        "information_gathering": 0.725,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.888,
+        "documentation": 0.8,
+        "efficiency": 0.919,
+        "exploit_resistance": 0.887
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 2,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 350,
-      "average_reward": 1.314,
-      "average_score": 1.657
+      "average_reward": 0.732,
+      "average_score": 1.166,
+      "rubric_avg": {
+        "safety": 0.771,
+        "calibration": 0.75,
+        "information_gathering": 0.725,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.888,
+        "documentation": 0.8,
+        "efficiency": 0.919,
+        "exploit_resistance": 0.887
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 2,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 375,
-      "average_reward": 1.135,
-      "average_score": 1.568
+      "average_reward": 0.915,
+      "average_score": 1.258,
+      "rubric_avg": {
+        "safety": 0.815,
+        "calibration": 0.84,
+        "information_gathering": 0.787,
+        "escalation_quality": 0.562,
+        "evidence_use": 0.888,
+        "documentation": 0.825,
+        "efficiency": 0.969,
+        "exploit_resistance": 0.906
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 1,
+        "ESCALATE": 1,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 400,
-      "average_reward": 1.314,
-      "average_score": 1.657
+      "average_reward": 0.732,
+      "average_score": 1.166,
+      "rubric_avg": {
+        "safety": 0.771,
+        "calibration": 0.75,
+        "information_gathering": 0.725,
+        "escalation_quality": 0.5,
+        "evidence_use": 0.888,
+        "documentation": 0.8,
+        "efficiency": 0.919,
+        "exploit_resistance": 0.887
+      },
+      "decision_distribution": {
+        "ACT": 3,
+        "ASK": 2,
+        "ESCALATE": 0,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 425,
-      "average_reward": 1.314,
-      "average_score": 1.657
+      "average_reward": 1.121,
+      "average_score": 1.361,
+      "rubric_avg": {
+        "safety": 0.909,
+        "calibration": 0.909,
+        "information_gathering": 0.787,
+        "escalation_quality": 0.581,
+        "evidence_use": 0.888,
+        "documentation": 0.825,
+        "efficiency": 0.969,
+        "exploit_resistance": 0.906
+      },
+      "decision_distribution": {
+        "ACT": 2,
+        "ASK": 1,
+        "ESCALATE": 2,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 450,
-      "average_reward": 1.111,
-      "average_score": 1.556
+      "average_reward": 0.92,
+      "average_score": 1.16,
+      "rubric_avg": {
+        "safety": 0.864,
+        "calibration": 0.864,
+        "information_gathering": 0.8,
+        "escalation_quality": 0.543,
+        "evidence_use": 0.914,
+        "documentation": 0.829,
+        "efficiency": 0.979,
+        "exploit_resistance": 0.893
+      },
+      "decision_distribution": {
+        "ACT": 2,
+        "ASK": 0,
+        "ESCALATE": 2,
+        "REFUSE": 3
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 475,
-      "average_reward": 1.135,
-      "average_score": 1.568
+      "average_reward": 1.154,
+      "average_score": 1.377,
+      "rubric_avg": {
+        "safety": 0.924,
+        "calibration": 0.924,
+        "information_gathering": 0.787,
+        "escalation_quality": 0.6,
+        "evidence_use": 0.888,
+        "documentation": 0.825,
+        "efficiency": 0.969,
+        "exploit_resistance": 0.925
+      },
+      "decision_distribution": {
+        "ACT": 2,
+        "ASK": 1,
+        "ESCALATE": 3,
+        "REFUSE": 2
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 500,
-      "average_reward": 1.135,
-      "average_score": 1.568
+      "average_reward": 1.452,
+      "average_score": 1.626,
+      "rubric_avg": {
+        "safety": 0.98,
+        "calibration": 0.98,
+        "information_gathering": 0.811,
+        "escalation_quality": 0.683,
+        "evidence_use": 0.867,
+        "documentation": 0.833,
+        "efficiency": 0.956,
+        "exploit_resistance": 0.95
+      },
+      "decision_distribution": {
+        "ACT": 2,
+        "ASK": 2,
+        "ESCALATE": 4,
+        "REFUSE": 1
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 525,
-      "average_reward": 1.45,
-      "average_score": 1.725
+      "average_reward": 1.32,
+      "average_score": 1.56,
+      "rubric_avg": {
+        "safety": 0.919,
+        "calibration": 0.897,
+        "information_gathering": 0.811,
+        "escalation_quality": 0.7,
+        "evidence_use": 0.867,
+        "documentation": 0.811,
+        "efficiency": 0.9,
+        "exploit_resistance": 0.95
+      },
+      "decision_distribution": {
+        "ACT": 1,
+        "ASK": 2,
+        "ESCALATE": 5,
+        "REFUSE": 1
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 550,
-      "average_reward": 1.271,
-      "average_score": 1.635
+      "average_reward": 1.32,
+      "average_score": 1.56,
+      "rubric_avg": {
+        "safety": 0.919,
+        "calibration": 0.897,
+        "information_gathering": 0.811,
+        "escalation_quality": 0.7,
+        "evidence_use": 0.867,
+        "documentation": 0.811,
+        "efficiency": 0.9,
+        "exploit_resistance": 0.95
+      },
+      "decision_distribution": {
+        "ACT": 1,
+        "ASK": 2,
+        "ESCALATE": 5,
+        "REFUSE": 1
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 575,
-      "average_reward": 1.314,
-      "average_score": 1.657
+      "average_reward": 0.963,
+      "average_score": 1.381,
+      "rubric_avg": {
+        "safety": 0.841,
+        "calibration": 0.739,
+        "information_gathering": 0.7,
+        "escalation_quality": 0.589,
+        "evidence_use": 0.867,
+        "documentation": 0.778,
+        "efficiency": 0.811,
+        "exploit_resistance": 0.933
+      },
+      "decision_distribution": {
+        "ACT": 1,
+        "ASK": 4,
+        "ESCALATE": 3,
+        "REFUSE": 1
+      },
+      "negative_reward_episodes": 0
     },
     {
       "episode": 600,
-      "average_reward": 1.45,
-      "average_score": 1.725
+      "average_reward": 1.32,
+      "average_score": 1.56,
+      "rubric_avg": {
+        "safety": 0.919,
+        "calibration": 0.897,
+        "information_gathering": 0.811,
+        "escalation_quality": 0.7,
+        "evidence_use": 0.867,
+        "documentation": 0.811,
+        "efficiency": 0.9,
+        "exploit_resistance": 0.95
+      },
+      "decision_distribution": {
+        "ACT": 1,
+        "ASK": 2,
+        "ESCALATE": 5,
+        "REFUSE": 1
+      },
+      "negative_reward_episodes": 0
     }
   ]
 }

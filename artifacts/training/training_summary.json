@@ -1,24 +1,24 @@
 {
   "final_trained_policy": {
-    "average_reward": 1.45,
-    "average_score": 1.725
+    "average_reward": 1.32,
+    "average_score": 1.56
   },
   "baselines": {
     "random": {
-      "average_reward": 0.46,
-      "average_score": 0.93
+      "average_reward": 0.444,
+      "average_score": 0.922
     },
     "weak": {
-      "average_reward": 0.586,
-      "average_score": 0.993
+      "average_reward": 0.558,
+      "average_score": 0.979
     },
     "heuristic": {
-      "average_reward": 0.757,
-      "average_score": 1.279
+      "average_reward": 0.732,
+      "average_score": 1.266
     },
     "expert": {
-      "average_reward": 1.656,
-      "average_score": 1.828
+      "average_reward": 1.652,
+      "average_score": 1.826
     }
   }
 }
