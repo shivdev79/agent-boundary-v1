@@ -31,14 +31,15 @@ import json
 import sys
 from pathlib import Path
 import types
+import importlib.machinery
 
 # Mock mergekit before TRL is imported — TRL references it in callbacks
 # but we never use model-merging features, so this is safe.
-# Must use types.ModuleType (not MagicMock) because TRL calls
-# importlib.util.find_spec("mergekit") which requires __spec__ to be set.
+# Python 3.12 find_spec() raises ValueError if __spec__ is None,
+# so we must provide a real ModuleSpec (with loader=None is fine).
 def _make_mock_module(name: str) -> types.ModuleType:
     mod = types.ModuleType(name)
-    mod.__spec__ = None
+    mod.__spec__ = importlib.machinery.ModuleSpec(name, loader=None)
     return mod
 
 for _mod in ["mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
