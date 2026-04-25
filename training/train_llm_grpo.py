@@ -51,8 +51,11 @@ def _make_mock_module(name: str) -> types.ModuleType:
     mod.__getattr__ = lambda attr: _MockObj
     return mod
 
-for _mod in ["mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
-             "mergekit.io", "mergekit.io.tasks", "mergekit.common"]:
+for _mod in [
+    "mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
+    "mergekit.io", "mergekit.io.tasks", "mergekit.common",
+    "llm_blender", "llm_blender.blender", "llm_blender.blender.blender_utils",
+]:
     sys.modules[_mod] = _make_mock_module(_mod)
 
 ROOT = Path(__file__).resolve().parents[1]
