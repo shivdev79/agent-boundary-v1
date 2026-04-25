@@ -52,9 +52,15 @@ def _make_mock_module(name: str) -> types.ModuleType:
     return mod
 
 for _mod in [
+    # mergekit — TRL callbacks reference model merging (we never use it)
     "mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
     "mergekit.io", "mergekit.io.tasks", "mergekit.common",
+    # llm_blender — TRL judges.py optional dep
     "llm_blender", "llm_blender.blender", "llm_blender.blender.blender_utils",
+    # weave — TRL callbacks.py optional dep (wandb tracing)
+    "weave",
+    # liger_kernel — TRL optional efficiency kernels
+    "liger_kernel", "liger_kernel.transformers",
 ]:
     sys.modules[_mod] = _make_mock_module(_mod)
 
