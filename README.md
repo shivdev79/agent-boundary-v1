@@ -31,6 +31,8 @@ tags:
 
 **Colab Notebook:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shivdev79/agent-boundary-v1/blob/main/AgentBoundary_v1_Training.ipynb)
 
+**Writeup:** https://github.com/shivdev79/agent-boundary-v1/blob/main/WRITEUP.md
+
 ---
 
 ## The Problem
@@ -166,6 +168,10 @@ python training/train_llm_grpo.py --dry-run    # validate reward without GPU
 | expert | 1.652 | 1.826 | Hand-authored oracle |
 
 The REINFORCE policy **beats heuristic by 1.8× and random by 3×** — the environment is learnable but not trivially solved.
+
+### Policy Comparison Chart
+
+![Policy comparison](artifacts/evaluation/policy_comparison.png)
 
 ### Training Curve
 
