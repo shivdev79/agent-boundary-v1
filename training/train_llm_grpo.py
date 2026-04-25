@@ -44,7 +44,7 @@ def _make_mock_module(name: str) -> types.ModuleType:
 
 for _mod in ["mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
              "mergekit.io", "mergekit.io.tasks", "mergekit.common"]:
-    sys.modules.setdefault(_mod, _make_mock_module(_mod))
+    sys.modules[_mod] = _make_mock_module(_mod)  # force-overwrite, setdefault won't fix stale None spec
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
