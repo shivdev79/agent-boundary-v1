@@ -33,18 +33,24 @@ from pathlib import Path
 import types
 import importlib.machinery
 
-# Mock mergekit before TRL is imported — TRL references it in callbacks
-# but we never use model-merging features, so this is safe.
-# Python 3.12 find_spec() raises ValueError if __spec__ is None,
-# so we must provide a real ModuleSpec (with loader=None is fine).
+# Mock mergekit before TRL is imported — TRL's callbacks.py does:
+#   from mergekit.config import MergeConfiguration
+# so the stub modules must return a dummy class for ANY attribute access.
+# Python 3.12 find_spec() also requires __spec__ to be a real ModuleSpec.
+class _MockObj:
+    """Dummy stand-in for any mergekit class/function."""
+    def __init__(self, *a, **kw): pass
+    def __call__(self, *a, **kw): return self
+
 def _make_mock_module(name: str) -> types.ModuleType:
     mod = types.ModuleType(name)
     mod.__spec__ = importlib.machinery.ModuleSpec(name, loader=None)
+    mod.__getattr__ = lambda attr: _MockObj  # satisfy any `from mergekit.x import Y`
     return mod
 
 for _mod in ["mergekit", "mergekit.config", "mergekit.merge", "mergekit.architecture",
              "mergekit.io", "mergekit.io.tasks", "mergekit.common"]:
-    sys.modules[_mod] = _make_mock_module(_mod)  # force-overwrite, setdefault won't fix stale None spec
+    sys.modules[_mod] = _make_mock_module(_mod)
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
