@@ -5,8 +5,9 @@ This script trains a real LLM to make calibrated workflow judgments
 
 --- Setup (run once on Colab / GPU machine) ---
 
-    pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
-    pip install trl>=1.0.0 datasets
+    pip install unsloth mergekit openenv-core -q
+    pip install "trl>=0.19.0,<=0.24.0" -q
+    # Then restart runtime before running this script
 
 --- Run ---
 
