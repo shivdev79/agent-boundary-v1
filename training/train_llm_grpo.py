@@ -408,6 +408,11 @@ def train() -> None:
         fp16=True,          # T4 supports fp16 but not bf16
     )
 
+    # TRL GRPOTrainer expects model.warnings_issued dict — Unsloth's patched
+    # model doesn't carry it, so we inject it before the trainer is built.
+    if not hasattr(model, "warnings_issued"):
+        model.warnings_issued = {}
+
     trainer = GRPOTrainer(
         model=model,
         reward_funcs=reward_fn,
