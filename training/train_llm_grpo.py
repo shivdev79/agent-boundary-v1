@@ -368,7 +368,8 @@ def train() -> None:
         logging_steps=10,
         save_steps=50,
         report_to=[],
-        bf16=True,          # use fp16=True if bf16 not supported
+        bf16=False,
+        fp16=True,          # T4 supports fp16 but not bf16
     )
 
     trainer = GRPOTrainer(
