@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# UV cache
+.uv-cache/
+
+# Logs
+*.log
+uvicorn-*.log
+
+# Model artifacts (large files)
+artifacts/llm-grpo/
+artifacts/training/policy_weights.json
+
+# Keep evaluation artifacts
+!artifacts/evaluation/
+!artifacts/supervised_traces.jsonl
+!artifacts/training/training_summary.json
+!artifacts/training/training_history.json
+!artifacts/training/training_curve.png
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

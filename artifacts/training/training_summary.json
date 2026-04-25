@@ -1,0 +1,24 @@
+{
+  "final_trained_policy": {
+    "average_reward": 1.45,
+    "average_score": 1.725
+  },
+  "baselines": {
+    "random": {
+      "average_reward": 0.46,
+      "average_score": 0.93
+    },
+    "weak": {
+      "average_reward": 0.586,
+      "average_score": 0.993
+    },
+    "heuristic": {
+      "average_reward": 0.757,
+      "average_score": 1.279
+    },
+    "expert": {
+      "average_reward": 1.656,
+      "average_score": 1.828
+    }
+  }
+}

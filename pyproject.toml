@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openenv-agentboundary-v1"
+version = "0.1.0"
+description = "AgentBoundary-v1 environment for training agentic judgment in OpenEnv"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.0.0",
+    "openai>=1.30.0",
+    "openenv-core[core]>=0.2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+]
+train = [
+    "accelerate>=0.33.0",
+    "datasets>=2.20.0",
+    "matplotlib>=3.8.0",
+    "pandas>=2.2.0",
+    "peft>=0.12.0",
+    "transformers>=4.44.0",
+    "trl>=0.10.1",
+]
+
+[project.scripts]
+server = "agentv1.server.app:main"
+
+[tool.setuptools]
+include-package-data = true
+packages = ["agentv1", "agentv1.server"]
+package-dir = { "agentv1" = ".", "agentv1.server" = "server" }
