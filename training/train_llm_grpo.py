@@ -58,7 +58,7 @@ for _mod in [
     # llm_blender — TRL judges.py optional dep
     "llm_blender", "llm_blender.blender", "llm_blender.blender.blender_utils",
     # weave — TRL callbacks.py optional dep (wandb tracing)
-    "weave",
+    "weave", "weave.trace", "weave.trace.context", "weave.trace.weave_client",
     # liger_kernel — TRL optional efficiency kernels
     "liger_kernel", "liger_kernel.transformers",
 ]:
