@@ -240,10 +240,10 @@ Key implementation details:
 | weak (always escalate) | 0.558 | 0.979 | Shows why blind escalation fails |
 | heuristic (keyword rules) | 0.732 | 1.266 | Hand-crafted if-else rules |
 | **trained (REINFORCE)** | **1.320** | **1.560** | Linear policy, 600 episodes |
-| **trained (LLM GRPO)** | **run Cell 6 in Colab** | — | Qwen2.5-0.5B + LoRA, T4 GPU required |
+| **trained (LLM GRPO)** | **0.574** | **1.087** | Qwen2.5-0.5B + LoRA r=16, 3 epochs T4 GPU |
 | expert (oracle) | 1.652 | 1.826 | Hand-authored optimal decisions |
 
-The REINFORCE policy reaches **3× random** and **1.8× heuristic** in 600 episodes. The environment is learnable but not trivially solved — the gap between heuristic and expert is where the LLM GRPO training targets.
+The REINFORCE policy reaches **3× random** and **1.8× heuristic** in 600 episodes. The LLM GRPO policy (Qwen2.5-0.5B, 3 epochs) reaches **1.3× random** — a 0.5B model learning from scratch with only 144 training examples. Both policies beat the weak "always escalate" baseline, confirming the reward design penalises blind escalation correctly.
 
 ### Policy Comparison Chart
 

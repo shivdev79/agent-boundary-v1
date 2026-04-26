@@ -108,6 +108,7 @@ grade_action() — 8 components
 | Weak (always escalate) | 0.558 | Shows why blind escalation fails |
 | Heuristic (keyword rules) | 0.732 | Hand-crafted rules |
 | **Trained (REINFORCE)** | **1.320** | Linear policy, 600 episodes |
+| **Trained (LLM GRPO)** | **0.574** | Qwen2.5-0.5B + LoRA r=16, 3 epochs |
 | Expert (oracle) | 1.652 | Hand-authored optimal |
 
 The trained REINFORCE policy:
