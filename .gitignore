@@ -19,8 +19,9 @@ uv.lock
 *.log
 uvicorn-*.log
 
-# Model artifacts (large files)
-artifacts/llm-grpo/
+# Model artifacts (large files — exclude weights but keep eval JSON)
+artifacts/llm-grpo/*.bin
+artifacts/llm-grpo/*.safetensors
 artifacts/training/policy_weights.json
 
 # Keep evaluation artifacts
@@ -29,6 +30,7 @@ artifacts/training/policy_weights.json
 !artifacts/training/training_summary.json
 !artifacts/training/training_history.json
 !artifacts/training/training_curve.png
+!artifacts/llm-grpo/llm_eval.json
 
 # IDE
 .vscode/

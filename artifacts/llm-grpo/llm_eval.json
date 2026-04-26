@@ -1,0 +1,16 @@
+{
+  "model": "Qwen2.5-0.5B-Instruct",
+  "lora_rank": 16,
+  "epochs": 3,
+  "training_examples": 144,
+  "gpu": "Tesla T4",
+  "avg_reward": 0.574,
+  "avg_score": 1.087,
+  "baselines": {
+    "random": 0.444,
+    "heuristic": 0.732,
+    "expert": 1.652
+  },
+  "training_command": "python training/train_llm_grpo.py",
+  "notes": "TRL GRPOTrainer + Unsloth + LoRA r=16. Reward from grade_action() directly, no reward model."
+}
