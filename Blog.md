@@ -376,3 +376,4 @@ AgentBoundary-v1 makes that gap **trainable**.
 | Live Demo | https://huggingface.co/spaces/Shivanshu31/agentboundary-v1 |
 | GitHub | https://github.com/shivdev79/agent-boundary-v1 |
 | Colab Notebook | https://colab.research.google.com/github/shivdev79/agent-boundary-v1/blob/main/AgentBoundary_v1_Training.ipynb |
+| Video & Slides | https://drive.google.com/drive/folders/1t_igyrqw9PldoFZFms3jQD5gVLurzbHy?usp=drive_link |

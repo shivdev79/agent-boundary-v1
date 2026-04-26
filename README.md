@@ -28,6 +28,7 @@ tags:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shivdev79/agent-boundary-v1/blob/main/AgentBoundary_v1_Training.ipynb)
 [![GitHub](https://img.shields.io/badge/GitHub-Repo-black?logo=github)](https://github.com/shivdev79/agent-boundary-v1)
 [![Blog](https://img.shields.io/badge/📝-Blog-green)](https://huggingface.co/spaces/Shivanshu31/agentboundary-v1/blob/main/Blog.md)
+[![Video & Slides](https://img.shields.io/badge/📁-Video%20%26%20Slides-yellow)](https://drive.google.com/drive/folders/1t_igyrqw9PldoFZFms3jQD5gVLurzbHy?usp=drive_link)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://python.org)
 [![OpenEnv](https://img.shields.io/badge/OpenEnv-compatible-orange)](https://huggingface.co/openenv)
 [![Health](https://img.shields.io/badge/Health%20Check-57%2F57-brightgreen)](#reproduce)
