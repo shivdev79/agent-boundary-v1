@@ -4,7 +4,7 @@ from enum import Enum
 from typing import Dict, List
 
 from openenv.core.env_server.types import Action, Observation, State
-from pydantic import Field
+from pydantic import Field, field_validator
 
 
 class JudgmentDecision(str, Enum):
@@ -52,6 +52,13 @@ class AgentBoundaryAction(Action):
     """Structured decision taken by the agent for a judgment scenario."""
 
     decision: JudgmentDecision = Field(..., description="Primary judgment decision.")
+
+    @field_validator("decision", "question_focus", "escalation_target", mode="before")
+    @classmethod
+    def strip_enum_fields(cls, v: object) -> object:
+        if isinstance(v, str):
+            return v.strip()
+        return v
     justification: str = Field(
         default="",
         description="Brief reason for the decision grounded in the scenario.",
